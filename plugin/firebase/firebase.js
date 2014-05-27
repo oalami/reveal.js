@@ -2,10 +2,40 @@
  * Handles opening of and synchronization with the reveal.js
  * notes window.
  */
+var firebaseLogin = null;
+var firebaseLogout = null;
 var RevealFirebase = (function() {
+  var rootRef = new Firebase('https://slideF.firebaseio.com/');
+  var controlKey = 'control';
+  var currentKey = 'current';
+  var controlRef = null;
+  var currentRef = null;
+  var loggedIn = false;
+  var uid = null;
+
+  var auth = new FirebaseSimpleLogin(rootRef, function(error, user) {
+    if (error) {
+      // an error occurred while attempting login
+      console.log(error);
+      uid = null;
+      loggedIn = false;
+    } else if (user) {
+      // user authenticated with Firebase
+      console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+      uid = user.uid;
+      loggedIn = true
+
+      init();
+    } else {
+      // user is logged out
+      uid = null;
+      loggedIn = false;
+    }
+  });
+
   function init() {
-    var currentRef = new Firebase('https://slidee.firebaseio.com/current/');
-    var controlRef = new Firebase('https://slidee.firebaseio.com/control/');
+    controlRef = rootRef.child(uid).child(controlKey);
+    currentRef = rootRef.child(uid).child(currentKey);
 
     controlRef.set(null);
     currentRef.set(getMessageData());
@@ -31,7 +61,9 @@ var RevealFirebase = (function() {
      * Posts the current slide data to the notes window
      */
     function update() {
-      currentRef.set(getMessageData());
+      if(loggedIn) {
+        currentRef.set(getMessageData());
+      }
     }
   }
 
@@ -62,14 +94,21 @@ var RevealFirebase = (function() {
       'markdown': notes ? typeof notes.getAttribute('data-markdown') === 'string' : false
     };
 
-    console.log(messageData);
-
     return messageData;
   }
 
-  Reveal.addEventListener( 'ready', function( event ) {
-    init();
-  } );
+  firebaseLogin = function login() {
+    auth.login('google');
+  }
 
+  firebaseLogout = function logout() {
+    auth.logout();
+    if(currentRef)  {
+      currentRef.off();
+    }
+    if(controlRef) {
+      controlRef.off();
+    }
+  }
 })();
 

@@ -19,7 +19,7 @@ var Reveal = (function(){
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
 			// when the presentation is scaled to fit different resolutions
-			width: 960,
+			width: 1280,
 			height: 700,
 
 			// Factor of the display size that should remain empty around the content
@@ -30,7 +30,7 @@ var Reveal = (function(){
 			maxScale: 1.0,
 
 			// Display controls in the bottom right corner
-			controls: true,
+			controls: false,
 
 			// Display a presentation progress bar
 			progress: true,
@@ -39,7 +39,7 @@ var Reveal = (function(){
 			slideNumber: false,
 
 			// Push each slide change to the browser history
-			history: false,
+			history: true,
 
 			// Enable keyboard shortcuts for navigation
 			keyboard: true,
@@ -48,7 +48,7 @@ var Reveal = (function(){
 			overview: true,
 
 			// Vertical centering of slides
-			center: true,
+			center: false,
 
 			// Enables touch navigation on devices with touch input
 			touch: true,
@@ -93,10 +93,10 @@ var Reveal = (function(){
 			theme: null,
 
 			// Transition style
-			transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+			transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
 
 			// Transition speed
-			transitionSpeed: 'default', // default/fast/slow
+			transitionSpeed: 'fast', // default/fast/slow
 
 			// Transition style for full page slide backgrounds
 			backgroundTransition: 'default', // default/linear/none
