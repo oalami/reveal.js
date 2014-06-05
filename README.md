@@ -12,4 +12,5 @@ which will prompt you to login with Google.
 MIT licensed
 
 Presentations and Firebase plugin (C) 2014 Ossama Alami
+
 Original reveal.js Copyright (C) 2014 Hakim El Hattab, http://hakim.se
