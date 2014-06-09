@@ -1,26 +1,46 @@
-/**
- * Sky theme for reveal.js.
- *
- * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
- */
-
-
 // Default mixins and settings -----------------
 @import "../template/mixins";
 @import "../template/settings";
 // ---------------------------------------------
 
-
-
 // Include theme-specific fonts
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-Thin.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-Light.otf");
+  font-style: normal;
+//  font-weight: bold;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-ThinItalic.otf");
+  font-style: italic;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-LightItalic.otf");
+  font-style: italic;
+  font-weight: bold;
+}
+
 
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Open Sans', sans-serif;
+$mainFont: 'Gotham', 'Open Sans', sans-serif;
 $mainColor: #333;
-$headingFont: 'Open Sans', sans-serif;
+$headingFont: 'Gotham', 'Open Sans', sans-serif;
+$headingFontWeight: bold;
 $headingColor: #333;
+$headingWeight: bold;
+$mainFontSize: 40px;
+
 //$headingLetterSpacing: -0.08em;
 $headingTextShadow: none;
 $backgroundColor: #f7fbfc;
@@ -33,13 +53,18 @@ $selectionBackgroundColor: #134674;
 	line-height: 1.3em;
 }
 
-// Background generator
-//@mixin bodyBackground() {
-//	@include radial-gradient( #add9e4, #f7fbfc );
-//}
-
-
-
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
+
+
+.reveal h1 { font-size: 3.77em; }
+.reveal h2 { font-size: 1.3em;	}
+.reveal h3 { font-size: 1.1em;	}
+.reveal h4 { font-size: 1em;	}
+
+.reveal h1 {
+  font-weight: normal;
+}
+
+

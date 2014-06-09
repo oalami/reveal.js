@@ -1,9 +1,23 @@
-/**
- * Sky theme for reveal.js.
- *
- * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
- */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-Thin.otf");
+  font-style: normal;
+  font-weight: normal; }
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-Light.otf");
+  font-style: normal; }
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-ThinItalic.otf");
+  font-style: italic;
+  font-weight: normal; }
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-LightItalic.otf");
+  font-style: italic;
+  font-weight: bold; }
 .reveal a:not(.image) {
   line-height: 1.3em; }
 
@@ -15,8 +29,8 @@ body {
   background-color: #f7fbfc; }
 
 .reveal {
-  font-family: "Open Sans", sans-serif;
-  font-size: 36px;
+  font-family: "Gotham", "Open Sans", sans-serif;
+  font-size: 40px;
   font-weight: normal;
   letter-spacing: -0.02em;
   color: #333333; }
@@ -37,7 +51,8 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #333333;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Gotham", "Open Sans", sans-serif;
+  font-weight: bold;
   line-height: 0.9em;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -134,3 +149,18 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #3b759e; }
+
+.reveal h1 {
+  font-size: 3.77em; }
+
+.reveal h2 {
+  font-size: 1.3em; }
+
+.reveal h3 {
+  font-size: 1.1em; }
+
+.reveal h4 {
+  font-size: 1em; }
+
+.reveal h1 {
+  font-weight: normal; }
