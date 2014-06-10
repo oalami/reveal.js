@@ -217,18 +217,16 @@
                    <p style="font-size: 1.2em" class="fragment">This is why we built Firebase.</p>
                 </section>
 
+                <section class="center">
+                    <img src="../shared/firebase_logo.png" width="60%">
+                    <p style="font-size: 1.5em">An Overview</p>
+                </section>
+
                 <section>
                     <iframe src="drawing.html" width="50%" height="600px" style="float:right"></iframe>
                     <iframe src="drawing.html" width="50%" height="600px"></iframe>
 
                     <small><a href="https://jk92ept3b7h.firebaseio-demo.com/">View in Firebase Dashboard</a></small>
-                </section>
-
-
-                <section class="center">
-                    <img src="../shared/firebase_logo.png" width="60%">
-                    <p style="font-size: 1.5em">An Overview</p>
-
                 </section>
 
                 <section>
@@ -281,6 +279,35 @@
                     <h3>Let's write some code!</h3>
                 </section>
 
+
+                <section class="center">
+                    <h1>Wrap Up</h1>
+                </section>
+
+                <section>
+                    <h2>Firebase is...</h2>
+                    <p>Firebase is a scalable backend for your web or mobile app.</p>
+                    <ul>
+                        <li><b>Data</b>, stored and synced across clients</li>
+                        <li><b>Authentication</b>, simplified and integrated</li>
+                        <li><b>Hosting</b>, production-grade static asset hosting</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>Open Data Sets</h2>
+                    <p></p>
+                    <ul>
+                        <li>Cryptocurrency Exchange Rates</li>
+                        <li>Live Transit Data</li>
+                        <li>Earthquakes</li>
+                        <li>Airport Delays</li>
+                        <li>Weather</li>
+                        <li>More...</li>
+                    </ul>
+                </section>
+
 				<section>
 					<h2>Works With</h2>
 					<br/>
@@ -290,46 +317,24 @@
 					<img src="javascript_logo.png">
 					</p>
 				</section>
-				
-				<section>
-					<h2>Using Firebase</h2>
-					<br/>
-					<pre><code data-trim class="objectivec">
-//CREATE A FIREBASE
-Firebase* fb = [[Firebase alloc] initWithUrl:@"https://YOUR.firebaseio.com/"];
 
-//SAVE DATA
-[fb setValue:@{@"name": @"Ossama Alami"}];
-
-//LISTEN FOR REALTIME CHANGES
-[fb observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-  if(snapshot.value == [NSNull null]) {
-    NSLog(@"User name doesn't exist");
-  } else {
-    NSString* name = snapshot.value[@"name"];
-    NSLog(@"User full name is: %@", name);
-  }
-}];
-
-					</code></pre>						
-				</section>							
 
 				<section>
 					<h2>Resources</h2>
 					<br/>
-					Try Firebase - <a href="https://www.firebase.com/tutorial/">www.firebase.com/tutorial/</a>
+					Try Firebase - <a href="https://www.firebase.com/tutorial/">firebase.com/tutorial/</a>
 					<br/>
-					Collaborative Drawing - <a href="https://www.firebase.com/tutorial/#example/drawing">www.firebase.com/tutorial/#example/drawing</a>
+					Collaborative Drawing - <a href="https://www.firebase.com/tutorial/#example/drawing">firebase.com/tutorial/#example/drawing</a>
 					<br/>
-					This Presentation - <a href="https://slidef.firebaseapp.com">slidef.firebaseapp.com</a>
+					This Presentation - <a href="https://slidee.firebaseapp.com/presentations/davis">slidee.firebaseapp.com/presentations/davis</a>
 					<br/><br/>
-					slideF:<br/>
+					Code:<br/>
 					<ul>
-						<li><a href="https://github.com/oalami/slideF">github.com/oalami/slideF</a></li>
-						<li><a href="https://github.com/oalami/slideF-android">github.com/oalami/slideF-android</a></li>
-						<li><a href="https://github.com/oalami/slideF-pebble">github.com/oalami/slideF-pebble</a></li>
+						<li><a href="https://github.com/oalami/slideF">github.com/oalami/slidee</a></li>
+						<li><a href="https://github.com/oalami/slideF-android">github.com/oalami/slidee-android</a></li>
 					</ul>
 					<br/><br/>
+                    Thanks!
 				</section>				
 			</div>
 
