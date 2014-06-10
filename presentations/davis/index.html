@@ -68,7 +68,9 @@
             }
 
 
-
+            .center {
+                text-align: center;
+            }
 
 		</style>
 		<base target="_blank">
@@ -246,37 +248,47 @@
                 </section>
 
                 <section>
+                    <div class="center">
                     <h2>Store and Sync Data</h2>
                     <br/><br/>
                     <h4>Write Data to Firebase</h4>
 <pre><code data-trim>
-    var ref = new Firebase("https://future-insights.firebaseio-demo.com/");
-    ref.set("Hello Future Insights!");</code></pre>
+var ref = new Firebase("https://sacramento.firebaseio-demo.com/");
+ref.set("Hello Sacramento!");</code></pre>
                     <br/><br/>
                     <h4>Read Data from Firebase</h4>
 <pre><code data-trim>
-    ref.on("child_added", function (snapshot) {
+ref.on("child_added", function (snapshot) {
     var data = snapshot.val();
     console.log(data);
-    });
+});
 </code></pre>
+</div>
                 </section>
 
                 <section>
+                    <div class="center">
                     <h2>Authenticate Users</h2>
+
                     <p>
                         Use Firebase Simple Login to authenticate users with Facebook, Twitter, GitHub and more
                     </p>
-                    <img src="simple-login.png"/>
+                    <img src="simple-login.png" style="margin-top:30px;"/>
+                    </div>
                 </section>
 
                 <section>
+                    <div class="center">
                     <h2>Firebase Hosting</h2>
+
                     <img src="app.png" style="width:400px;"/>
+                </div>
                 </section>
 
                 <section>
-                    <h3>Let's write some code!</h3>
+                    <div class="center">
+                    <h2>Let's write some code!</h2>
+                    </div>
                 </section>
 
 
