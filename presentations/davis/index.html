@@ -258,7 +258,7 @@ ref.set("Hello Sacramento!");</code></pre>
                     <br/><br/>
                     <h4>Read Data from Firebase</h4>
 <pre><code data-trim>
-ref.on("child_added", function (snapshot) {
+ref.on("value", function (snapshot) {
     var data = snapshot.val();
     console.log(data);
 });
