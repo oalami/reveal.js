@@ -166,5 +166,8 @@ body {
 .reveal h1 {
   font-weight: normal; }
 
+.reveal ul {
+  margin-top: 10px; }
+
 .reveal li {
   margin-bottom: 20px; }
