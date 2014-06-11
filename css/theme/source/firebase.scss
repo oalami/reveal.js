@@ -7,31 +7,28 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 @font-face {
   font-family: 'Gotham';
-  src: url("../../fonts/Gotham-Thin.otf");
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'Gotham';
   src: url("../../fonts/Gotham-Light.otf");
   font-style: normal;
-//  font-weight: bold;
-}
-@font-face {
-  font-family: 'Gotham';
-  src: url("../../fonts/Gotham-ThinItalic.otf");
-  font-style: italic;
   font-weight: normal;
 }
 @font-face {
   font-family: 'Gotham';
   src: url("../../fonts/Gotham-LightItalic.otf");
   font-style: italic;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-MediumItalic.otf");
+  font-style: italic;
   font-weight: bold;
 }
-
-
-
+@font-face {
+  font-family: 'Gotham';
+  src: url("../../fonts/Gotham-Medium.otf");
+  font-style: normal;
+  font-weight: bold;
+}
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Gotham', 'Open Sans', sans-serif;
 $mainColor: #333;
@@ -39,7 +36,7 @@ $headingFont: 'Gotham', 'Open Sans', sans-serif;
 $headingFontWeight: bold;
 $headingColor: #333;
 $headingWeight: bold;
-$mainFontSize: 40px;
+$mainFontSize: 44px;
 
 //$headingLetterSpacing: -0.08em;
 $headingTextShadow: none;
@@ -63,8 +60,11 @@ $selectionBackgroundColor: #134674;
 .reveal h3 { font-size: 1.1em;	}
 .reveal h4 { font-size: 1em;	}
 
+
 .reveal h1 {
   font-weight: normal;
 }
 
-
+.reveal li {
+  margin-bottom: 20px;
+}
