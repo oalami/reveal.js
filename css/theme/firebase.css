@@ -31,7 +31,7 @@ body {
 
 .reveal {
   font-family: "Gotham", "Open Sans", sans-serif;
-  font-size: 44px;
+  font-size: 50px;
   font-weight: normal;
   letter-spacing: -0.02em;
   color: #333333; }
@@ -158,10 +158,10 @@ body {
   font-size: 1.3em; }
 
 .reveal h3 {
-  font-size: 1.1em; }
+  font-size: 1em; }
 
 .reveal h4 {
-  font-size: 1em; }
+  font-size: .8em; }
 
 .reveal h1 {
   font-weight: normal; }
