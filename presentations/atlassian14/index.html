@@ -30,6 +30,7 @@
 
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>    <![endif]-->
+
 </head>
 
 <body>
@@ -56,11 +57,10 @@
 
     <section>
       <h2>Agenda</h2>
-      <br/>
       <ul>
         <li>What is Firebase?</li>
         <li>Building Serverless Add-ons</li>
-        <li>Collborative Planning Poker with Jira Integration</li>
+        <li>Collaborative Planning Poker with Jira Integration</li>
         <li>Security & Authorization</li>
         <li>Deploying</li>
         <li>Resources</li>
@@ -78,7 +78,7 @@
 
       <ul>
         <li><strong>Realtime Database</strong> store and sync data across clients</li>
-        <li><strong>Authentication</strong> easily authenticate users</li>
+        <li><strong>Security & Authentication</strong> easily authenticate users</li>
         <li><strong>Hosting</strong> production-grade static asset hosting</li>
       </ul>
 
@@ -87,7 +87,6 @@
 
     <section>
       <h2>Realtime Database</h2>
-      <br/>
       <ul>
         <li>NoSQL Database</li>
         <li>JSON Objects</li>
@@ -99,7 +98,6 @@
 
     <section>
       <h2>Realtime Database</h2>
-      <br/>
 
       <h4>Create a Reference</h4>
       <pre><code data-trim class="javascript">
@@ -139,9 +137,7 @@ ref.on("value", function (snapshot) {
     </section>
 
     <section>
-      <h2>Authentication & Security</h2>
-      <br/>
-
+      <h2>Security & Authentication</h2>
       <ul>
         <li>Control access and validate data</li>
         <li>Expression-based rules language enforced by Firebase</li>
@@ -152,7 +148,6 @@ ref.on("value", function (snapshot) {
 
     <section>
       <h2>Firebase Hosting</h2>
-      <br/>
 
       <ul>
         <li>Globally backed by a CDN</li>
@@ -178,10 +173,10 @@ ref.on("value", function (snapshot) {
       <h2>More About Firebase</h2>
       <div style="display: inline-block; width: 70%">
         <ul>
-          <li>90,000 registered developers</li>
+          <li>95,000 registered developers</li>
           <li>Founded in 2011 in SF</li>
-          <li>Customers include: Citrix, Atlassian, CBS, Twitch, Warby Parker, and Coffee Meets Bagel</li>
-          <li>One million concurrents</li>
+          <li>Customers include: Citrix, Atlassian, CBS, Twitch, Warby Parker, Coffee Meets Bagel, Instacart, Yahoo</li>
+          <li>One million+ concurrents</li>
           <li>Billions of operations per week</li>
         </ul>
       </div>
@@ -198,10 +193,10 @@ ref.on("value", function (snapshot) {
     <section>
       <h2>Atlassian Connect JavaScript API</h2>
       <ul>
-        <li>Your app lives in an iframe in Jira or Confluence</li>
-        <li>Load the Atlassian Connect JavaScript library directly from your instance</li>
+        <li>Lives in an IFRAME in Jira or Confluence</li>
+        <li>Load the Atlassian Connect library directly from your instance</li>
         <li>Creates a cross-domain messaging bridge</li>
-        <li><code>AP</code> class is created allowing you to interact</li>
+        <li><code>AP</code> class allows you to interact</li>
       </ul>
 
       <pre><code data-trim class="html">
@@ -210,13 +205,13 @@ ref.on("value", function (snapshot) {
       </code></pre>
 
       <pre><code data-trim class="javascript">
-AP.getUser(callback)  // Gets the user's basic profile information
+AP.getUser(callback)  // Gets the user's profile information
       </code></pre>
     </section>
 
     <section>
       <h2>Firebase + Atlassian Connect</h2>
-      Back to our whiteboard example...
+      Realtime Integrated Whiteboard in Jira in 5 minutes
 
       <div style="text-align: center">
         <img src="whiteboard.png" height="600px">
@@ -228,43 +223,65 @@ AP.getUser(callback)  // Gets the user's basic profile information
     <section>
       <h2>Atlassian Connect Configuration</h2>
       <h3>atlassian-connect.json</h3>
-      <br/>
       <pre><code data-trim class="json">
 {
-  "name": "Whiteboard",
-  "description": "Firebase Atlassian Connect Whiteboard add-on",
-  "key": "com.firebase.example.whiteboard",
-  "baseUrl": "http://localhost:8000",
-  "vendor": {
-    "name": "Firebase, Inc.",
-    "url": "https://firebase.com"
-  },
-  "authentication": {
-    "type": "none"
-  },
-  "scopes": [ "READ" ],
-  "modules": {
-    "generalPages": [
-      {
-        "url": "/whiteboard.html",
-        "key": "whiteboard",
-        "location": "system.top.navigation.bar",
-        "name": {
-          "value": "Whiteboard"
-        }
-      }
-    ]
-  }
+    "name": "Whiteboard",
+    "description": "Firebase Atlassian Connect Whiteboard add-on",
+    "key": "com.firebase.example.whiteboard",
+    "baseUrl": "https://at-whiteboard.firebaseapp.com",
+    "vendor": {
+        "name": "Firebase, Inc.",
+        "url": "https://firebase.com"
+    },
+    "authentication": {
+        "type": "none"
+    },
+    "scopes": [ "READ" ],
+    "modules": {
+        "generalPages": [
+            {
+                "url": "/whiteboard.html",
+                "key": "whiteboard",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Whiteboard"
+                }
+            }
+        ]
+    }
 }
       </code></pre>
     </section>
 
     <section>
       <h2>Atlassian Connect JavaScript API</h2>
+      <h3>Our App's HTML + JavaScript</h3>
+      <pre><code data-trim class="html">
+<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+<script src="http://localhost:2990/jira/atlassian-connect/all.js" type="text/javascript"></script>
+...
 
+<script>
+AP.getUser(function(user) {
+    console.log(user);
+    setup(user.fullName);
+});
+...
+function setup(userName) {
+  ...
+}
 
-      <p>Make requests using the Connect REST API using the helper method <code>AP.request(...)</code></p>
-      <br/>
+</script>
+</code></pre>
+    </section>
+
+    <section class="center" style="text-align: center">
+      <p style="font-size: 1.4em">Whiteboard Demo</p>
+    </section>
+
+    <section>
+      <h2>Data Integration with Connect</h2>
+      <p>Make requests using the Connect REST API using the helper method <code>AP.require('request',...)</code></p>
       <pre><code data-trim class="javascript">
 // Get a list of JIRA dashboards using the JIRA REST API.
 AP.require('request', function(request){
@@ -272,7 +289,7 @@ AP.require('request', function(request){
     url: '/rest/api/2/dashboard',
     success: function(response){
       console.log(response);
-    }
+    },
     error: function(error) {
       console.log(error);
     }
@@ -283,8 +300,192 @@ AP.require('request', function(request){
     </section>
 
     <section class="center" style="text-align: center">
-      <p style="font-size: 1.8em">Collborative Planning Poker with Jira Integration</p>
+      <p style="font-size: 1.8em">Collaborative Planning Poker with Jira Integration</p>
     </section>
+
+    <section>
+      <h2>Planning Poker</h2>
+      <ul>
+        <li>Consensus-based technique for estimating the effort or size of projects</li>
+        <li>Play number cards face-down, reveal and discuss</li>
+        <li>Eliminates anchoring effect in estimating project effort</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>FirePoker.io</h2>
+      <iframe src="https://at-poker.firebaseapp.com/app" width="100%" height="600px"></iframe>
+    </section>
+
+    <section>
+      <h2>Poker + Jira Integration</h2>
+      <br/>
+      <ul>
+        <li>Populate it with Jira issues</li>
+        <li>Pull the estimate data back into Jira</li>
+        <li>Do it all without a server</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Poker + Jira Integration</h2>
+      <br/>
+      <ul>
+        <li>First, a Demo</li>
+        <li>All Javascript + HTML</li>
+        <li>Hosted locally</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Integration</h2>
+      <h3>atlassian-connect.json</h3>
+<pre><code data-trim class="json">
+{
+    "name": "Firepoker",
+    "description": "Firebase Atlassian Connect Firepoker add-on",
+    "key": "com.firebase.example.firepoker",
+    "baseUrl": "http://localhost:8000",
+    "vendor": {
+        "name": "Firebase, Inc.",
+        "url": "https://firebase.com"
+    },
+    "authentication": {
+        "type": "none"
+    },
+    "scopes": [ "READ", "WRITE" ],
+    "modules": {
+        "jiraProjectTabPanels": [
+            {
+                "url": "/index.html?projectId={project.id}",
+                "weight": 100,
+                "key": "index",
+                "name": {
+                   "value": "Play Firepoker"
+                }
+            }
+        ]
+    }
+}
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Integration</h2>
+      <h3>JavaScript</h3>
+<pre><code data-trim class="javascript">
+var ref = new Firebase("https://at-poker.firebaseio.com/games");
+var currentQueryRef = null;
+var fbIssues = [];
+
+$(document).ready(function() {
+  var projectId = $.QueryString['projectId'];
+  var jql = 'project = '+projectId+' AND resolution = Unresolved AND status != Closed AND issuetype = "New Feature" ORDER BY priority DESC'
+
+  $('#jql').val(jql);
+
+  $('#search').click(searchJira);
+  $('#send').click(sendToFirepoker);
+
+  populateGameList();
+});
+
+//Populate the game list from FirePoker
+function populateGameList() {
+  ref.on('child_added', function(snapshot) {
+    var game = snapshot.val();
+    var gameId = snapshot.name();
+    var gameName = game.name;
+    var li = $('&lt;li&gt;').text(game.name).click(function() {
+      $('#gameId').val(gameId);
+    })
+
+    li.appendTo('#available_games');
+
+  });
+}
+
+//Search Jira for issues
+function searchJira() {
+  $('#results').text('...');
+  var jql = $('#jql').val();
+
+  AP.require('request', function(request){
+    request({
+      url: '/rest/api/2/search?jql=' + encodeURIComponent(jql),
+      success: function(response){
+        var issues = $.parseJSON(response).issues;
+
+        fbIssues = [];
+
+        //format the results for FirePoker
+        $('#results').text('');
+        for (var i = issues.length - 1; i >= 0; i--) {
+          fbIssues.push({
+            endedAt: false,
+            points: 0,
+            results: false,
+            startedAt: false,
+            status: "queue",
+            title: issues[i].fields.summary,
+            notes: issues[i].key
+          });
+
+          $('&lt;p id='+issues[i].key+'&gt;').append('&lt;a target="_blank" href="http://localhost:2990/jira/browse/'+issues[i].key+'"&gt;'+issues[i].key+'&lt;/a&gt;').append(' ' + issues[i].fields.summary).appendTo("#results");
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+}
+
+//Send the stories to FirePoker
+function sendToFirepoker() {
+  if(currentQueryRef != null) {
+    currentQueryRef.off('child_changed');
+  }
+
+  var currentGame = $("#gameId").val();
+
+  //https://at-poker.firebaseio.com/games/[game-id]/stories
+  var storiesRef = ref.child(currentGame).child('stories');
+
+  storiesRef.set(fbIssues);
+
+  //check to see if a value has been saved and update the issue
+  storiesRef.on('child_changed', function(snapshot) {
+    var story = snapshot.val();
+
+    //if the story is closed, update the jira issue
+    if(story.status === 'closed') {
+      $('#' + story.notes).append(' <b>(' +story.points + ')</b>');
+
+      AP.require('request', function(request){
+        request({
+          url: '/rest/api/2/issue/' + encodeURIComponent(story.notes),
+          type: 'PUT',
+          contentType: 'application/json',
+          data: '{"fields": {"customfield_10100": '+story.points+'}}',
+          success: function(response){
+            console.log(response);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      });
+    }
+  });
+
+  currentQueryRef = storiesRef;
+}
+</code></pre>
+    </section>
+
+
+
 
     <section class="center" style="text-align: center">
       <p style="font-size: 1.8em">Security & Authorization</p>
@@ -305,13 +506,46 @@ AP.require('request', function(request){
     <section>
       <h2>Authenticating Users</h2>
 
-      ....
+      <pre><code data-trim class="javascript">
+var myRef = new Firebase("https://YOUR-FIREBASE.firebaseio.com");
+var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
+  if (error) {
+    // an error occurred while attempting login
+    console.log(error);
+  } else if (user) {
+    // user authenticated with Firebase
+    console.log("User ID: " + user.uid + ", Provider: " + user.provider);
+  } else {
+    // user is logged out
+  }
+});
+
+authClient.login('google');
+      </code></pre>
     </section>
 
     <section>
       <h2>Example Security Rules</h2>
 
-      ....
+      <pre><code data-trim class="javascript">
+{
+  "rules": {
+    "users": {
+      "$user_id": {
+        // grants write access to the owner of this user account
+        // whose uid must exactly match the key ($user_id)
+        ".write": "$user_id === auth.uid",
+
+        "email": {
+          // an email is only allowed in the profile if it matches
+          // the auth token's email account (for Google or password auth)
+          ".validate": "newData.val() === auth.email"
+        }
+      }
+    }
+  }
+}
+      </code></pre>
     </section>
 
     <section class="center" style="text-align: center">
@@ -359,7 +593,9 @@ AP.require('request', function(request){
 
         <li>Atlassian Connect Docs - <a href="https://developer.atlassian.com/static/connect/docs/index.html">connect.atlassian.com</a></li>
 
-        <li>This Presentation - TODO</li>
+        <li>Samples - <a href="https://github.com/oalami/atlassian14">github.com/oalami/atlassian14</a></li>
+
+        <li>This Presentation - <a href="https://slidee.firebaseapp.com/presentations/atlassian14/">slidee.firebaseapp.com/atlassian14</a></li>
 
       </ul>
       <br/><br/>
