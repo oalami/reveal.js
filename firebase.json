@@ -1,11 +1,6 @@
 {
   "firebase": "slidee",
-  "public": ".",
-  "redirects": [ {
-    "source" : "/atlassian14",
-    "destination" : "/presentations/atlassian14",
-    "type" : 301
-  }],
+  "public": ".",  
   "ignore": [
     "firebase.json",
     ".*",
@@ -13,5 +8,10 @@
     "Gruntfile.js",
     "*.iml",
     "package.json"
-  ]
+  ],
+  "redirects": [{
+    "source" : "/atlassian14",
+    "destination" : "/presentations/atlassian14",
+    "type" : 301
+  }]
 }
