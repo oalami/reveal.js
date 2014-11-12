@@ -1,16 +1,4 @@
-<html>
-<head>
-  <script src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <script src="https://cdn.firebase.com/libs/geofire/3.1.0/geofire.min.js"></script>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu5qlNZScpmEecGBSkttdDikU1vMHYJWI">
-    </script>
-</head>
-<body>
-<script>
-/*global Firebase, google, $, GeoFire    */
- 
+
 (function () {
     "use strict";
     var map, previousInfowindow, ref, center, radiusInKm,
@@ -19,11 +7,10 @@
     radiusInKm = 0.5;
     ref = new Firebase("https://publicdata-parking.firebaseio.com/san_francisco");
     center = [37.78565219391501, -122.4058404513338];
- 
+
     function start() {
         var con, mag, continent, circleLoc, circle, circleOptions, geoFireGarages, geoFireStreets, geoQueryGarages, geoQueryStreets, myLatlng, previousInfowindow;
         map = new google.maps.Map(document.getElementById('map_canvas'), {zoom: 15});
- 
         myLatlng = new google.maps.LatLng(center[0], center[1]);
         map.setCenter(myLatlng);
  
@@ -53,7 +40,6 @@
         };
  
         circle = new google.maps.Circle(circleOptions);
- 
         geoQueryGarages.on("key_entered", function (id, location) {
             ref.child('garages/').child(id).once('value', function (snapshot) {
                 var marker, infowindow, r, rate,
@@ -204,6 +190,3 @@
  
     $(start);
 }());
-</script>
-</body>
-</html>
