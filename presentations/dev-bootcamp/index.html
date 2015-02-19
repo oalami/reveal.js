@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Firebase</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-iNj_8x0gSkgMn90zv9GscTJysiohcdA&sensor=false"></script>
+  <script src="https://cdn.firebase.com/libs/geofire/3.0.3/geofire.min.js"></script>
+  <script type="text/javascript" src="parking.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="../../css/reveal.min.css">
+  <link rel="stylesheet" href="../../css/theme/firebase.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="../../lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="../../lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <style type="text/css">
+    .logo {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .fb-point {
+      float: left;
+      width: 25%;
+      margin: 0px 0px 0px 30px;
+
+    }
+
+    #mark {
+      margin-top: 180px;
+      margin-left: 70px;
+    }
+
+    #login {
+      margin-top: 115px;
+    }
+
+    #hosting {
+      margin-top: 30px;
+      width: 300px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    #team {
+      float: right;
+      width: 500px;
+      margin-top: -100px;
+    }
+
+    .case-studies {
+      width: 250px;
+      margin-top: 100px;
+    }
+
+    #map_canvas img {
+      max-width: none;
+      max-height: none;
+      box-shadow: none;
+    }
+
+    #map_canvas {
+      line-height: 20px;
+    }
+
+  </style>
+  <base target="_blank">
+</head>
+
+<body>
+
+
+<div class="reveal">
+
+<div class="logo">
+  <img src="../shared/badge-small-light-plain.png">
+</div>
+
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section class="center">
+  <h1 style="font-size: 1.5em">Hi Dev Bootcamp!</h1>
+  <br/><br/>
+  <img src="dbc.png" style="margin-right: 150px; width: 220px;">
+  <img src="../shared/firebase_logo.png" width="25%">
+</section>
+
+<section class="center">
+  <img src="../shared/firebase_logo.png" width="60%">
+
+  <p style="font-size: 1.5em">Store and Sync Data in Realtime</p>
+</section>
+
+<section>
+  <div>
+    <h2>Who am I?</h2>
+    <br/><br/>
+    <img src="sara.jpeg" style="border-radius: 150px; float: left; margin-right: 40px" width="200px">
+    <br/>
+
+    <h3>Sara Robinson</h3>
+    Developer Advocate at Firebase
+    <br/>
+    <a href="https://twitter.com/SRobTweets">@SRobTweets</a>
+  </div>
+  <br/>
+</section>
+
+<section>
+  <h2>Today</h2>
+  <ul style="font-size: 50px; line-height: 70px">
+    <li>The why of Firebase</li>
+    <li>What is Firebase</li>
+    <li>A really cool demo</li>
+    <li>Live coding</li>
+    <li>Q&A</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h2>The why of Firebase</h2>
+  <br>
+
+  <p><em>Let's look to software of the past...</em></p>
+</section>
+
+<section>
+  <h2>Software of the past</h2>
+
+  <div><img src="spacewar.jpg" style="border-radius: 150px; vertical-align:middle; padding-right: 20px; width: 250px;"
+            alt="photo credit: Joi Ito http://www.flickr.com/people/35034362831@N01">70s: Mainframes <i>(Thin
+    Client)</i></div>
+  <div><img src="oregon-trail.jpg"
+            style="border-radius: 150px;vertical-align:middle; padding-right: 20px; width: 250px;"
+            alt="photo credit - angrydwarf.com">80s: Personal Computer <i>(Thick Client)</i></div>
+  <div><img src="yahoo-hearts.jpg"
+            style="border-radius: 100px; vertical-align:middle; padding-right: 20px; width: 250px; ">90s: Rise of the
+    Web <i>(Thin Client)</i></div>
+</section>
+
+<section>
+  <h2>Today's mobile apps</h2>
+  <br>
+  <div style="width: 40%; float: left;">
+    <img src="iphone_apps.jpg" style="border-radius: 100px; box-shadow: 10px 10px 5px lightgrey;">
+  </div>
+
+  <div style="width: 55%; float: left;">
+    <ul>
+      <li>Connected Thick Client</li>
+      <li>Mobile device does some of the work</li>
+      <li>Work offline (usually)</li>
+      <li>Usually request-response</li>
+    </ul>
+  </div>
+
+</section>
+
+<section>
+  <h2>Today's web apps</h2>
+  <ul>
+    <li>Powerful browsers</li>
+  </ul>
+  <img src="browsers.png" style="width: 75%">
+
+  <ul class="fragment">
+    <li>Mostly server side processing</li>
+    <li>Usually request-response</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tomorrow's web apps</h2>
+  <ul>
+    <li>New JavaScript frameworks are enabling more complex apps</li>
+    <li>Computing is moving closer to the user</li>
+  </ul>
+  <br/><br/>
+  <img src="angular-logo.png" style="float: left; margin: 10px">
+
+  <div style="width: 50%;float: right; text-align: center; margin: 10px"><img src="ember-logo.png" height="150px"></div>
+  <img src="react-logo.png" style="float: left; margin: 10px">
+  <img src="backbone-logo.png" style="float: left; margin: 10px; width: 400px;">
+</section>
+
+<section id="what-matters">
+  <div style="width: 40%; float: left;">
+    <h2 style="height: 150px">What matters to users?</h2>
+    <ul>
+      <li>Fast apps</li>
+      <li>Stuff to update in realtime</li>
+      <li>Apps work offline</li>
+    </ul>
+  </div>
+  <div style="width: 40%; float: right;">
+    <h2 style="height: 150px" class="fragment">These exist today</h2>
+
+    <div class="fragment">
+      <ul>
+        <li>Google Docs</li>
+        <li>Facebook Newsfeed</li>
+        <li>Live transit maps</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="center">
+  <img src="../shared/firebase_logo.png" width="60%">
+
+  <p style="font-size: 1.5em">An Overview</p>
+</section>
+
+<section>
+  <h2>Drawing Sample (<a href="http://goo.gl/MscNjn">goo.gl/MscNjn</a>)</h2>
+  <iframe src="drawing.html" width="50%" height="600px" style="float:right"></iframe>
+  <iframe src="drawing.html" width="50%" height="600px"></iframe>
+
+  <small><a href="https://yr0q7199y1r.firebaseio-demo.com/">View in Firebase Dashboard</a></small>
+</section>
+
+<section class="center">
+  <h2>Firebase is a cloud database</h2>
+  <img src="firebase-overview.png">
+</section>
+
+<section>
+
+  <div class="fb-point" style="margin:40px;font-size: .8em"><img src="database.png"
+                                                                 style="height:170px; margin-bottom:80px;"/><br/><b>Data</b><br/>
+    store and sync data across clients
+  </div>
+  <div class="fb-point" style="margin:40px;font-size: .8em"><img src="userMan.png" style="height:230px;"/><b>Authentication</b>
+    easily authenticate users
+  </div>
+  <div class="fb-point" style="margin:40px;font-size: .8em"><img src="hosting.png"
+                                                                 style="height:150px; margin-bottom:95px;"/><b>Hosting</b><br/>
+    production-grade static asset hosting
+  </div>
+</section>
+
+<section>
+  <h2>Open Data Sets</h2>
+
+  <p></p>
+  <ul style="font-size: 30px;">
+    <li>Cryptocurrency Exchange Rates</li>
+    <li>Live Transit Data</li>
+    <li>Parking</li>
+    <li>Earthquakes</li>
+    <li>Airport Delays</li>
+    <li>Weather</li>
+    <li>More...</li>
+  </ul>
+  <div id="map_canvas" style="height: 500px; width: 500px; float: right;"></div>
+</section>
+
+<section>
+  <h2>Works With</h2>
+  <br/>
+
+  <p style="text-align:center">
+    <img src="frameworks.png"/>
+  </p>
+</section>
+
+<section>
+  <h2>Store and Sync Data</h2>
+  <br/><br/>
+  <h4>Write Data to Firebase</h4>
+<pre style="margin-bottom:-50px;"><code data-trim>
+  var ref = new Firebase("https://dev-bootcamp.firebaseio-demo.com/");
+  ref.set("Hello Dev Bootcamp!");</code></pre>
+  <br/><br/>
+  <h4>Read Data from Firebase</h4>
+<pre><code data-trim>
+  ref.on("value", function (snapshot) {
+  var data = snapshot.val();
+  console.log(data);
+  });
+</code></pre>
+</section>
+
+<section>
+  <h2>More About Firebase</h2>
+  <br/>
+
+  <div style="float: left; font-size: 35px;">
+    <ul style="width:600px;">
+      <li><span id="current-devs">155,000</span> registered developers</li>
+      <li>1M concurrent users on Firebase sites</li>
+      <li>Founded in Spring of 2011 in SF</li>
+      <li>Joined Google Cloud Platform in October 2014</li>
+    </ul>
+    <div style="float: right;"><img src="devs.png" style="width: 170px; margin-left: 100px; margin-right: 20px;"/>
+        <img src="devices2.png" style="width: 300px;"/></div>
+  </div>
+  <br/>
+  <script>
+    var devsRef = new Firebase("https://firebase-website.firebaseio.com/stats/signups");
+    devsRef.on("value", function (snap) {
+      $("#current-devs").text(snap.val().toLocaleString());
+    });
+  </script>
+</section>
+
+<section>
+  <h2>Firebase in the Community</h2>
+  <img src="neohack.jpg" id="team" style="width: 550px; border-radius: 10px; float:left; margin-top: 100px; margin-left: 50px;"><br/>
+  <img src="calhacks.jpg" id="team" style="width: 400px; margin-top: 20px; margin-right: 100px; border-radius: 10px;">
+</section>
+
+<section>
+  <div class="center">
+    <h2 style="margin-top: 100px;">Let's write some code!</h2>
+  </div>
+</section>
+
+<section>
+  <h2>Citrix - GoToMeeting</h2>
+    <p style="margin-top: 40px;">Makes use of Firebase's realtime signaling, presence, and security rules</p>
+    <br/>
+    <div style="text-align: center;"><img src="gotomeeting.png" style="width: 600px;"/></div>
+</section>
+
+<section>
+  <h2>Citrix - Talkboard</h2>
+  <p style="margin-top: 40px; margin-bottom: 30px;">Realtime, collaborative whiteboarding for teams</p>
+  <div style="text-align:center;"><img src="talkboard.png" style="width:600px;"/></div>
+</section>
+
+<section>
+  <h2>CBS</h2>
+  <ul id="cbs" style="float:left; width:600px; margin-right:100px;">
+    <li>Built a realtime chat platform for reality TV series <i>Big Brother</i></li>
+    <br/>
+    <li>Handled 50k concurrents at peak times, and over 27M chat entries were logged throughout the season</li>
+    <br/>
+
+  </ul>
+  <div id="cbs-img" style="margin-left:30px;"/>
+  <img src="cbs-chat.jpg"/>
+</div>
+</section>
+
+
+
+<section class="center">
+  <h2>More Case Studies</h2>
+  <br/>
+  <img class="case-studies" src="twitch.png"/><p style="font-size: 30px;">Notifying users when realtime streams go live</p><br/>
+  <img class="case-studies" src="warby.png"/><p style="font-size: 30px;">Powering pneumatic tubes</p><br/>
+  <img class="case-studies" src="cmb.png"/><p style="font-size: 30px;">Powering realtime chat</p>
+</section>
+<section>
+
+  <h2>Conclusion</h2>
+  <p>We talked about this stuff</p>
+  <ul style="font-size: 50px; line-height: 70px">
+    <li>The why of Firebase</li>
+    <li>What is Firebase</li>
+    <li>A really cool demo</li>
+    <li>Live coding</li>
+  </ul>
+  <br/><br/>
+  <p class="fragment">Questions anyone?</p>
+</section>
+
+<section>
+  <h2>Resources</h2>
+  <ul>
+    <li>This Presentation: <a href="https://slidee.firebaseapp.com/presentations/dev-bootcamp">slidee.firebaseapp.com/presentations/dev-bootcamp</a>
+    </li>
+    <li>Try Firebase: <a href="https://www.firebase.com/tutorial/">firebase.com/tutorial/</a></li>
+    <li>Chat Example: <a href="https://github.com/sararob/live-coding">github.com/sararob/live-coding</a></li>
+  </ul>
+  <br/><br/>
+  Thanks!
+</section>
+</div>
+
+</div>
+
+<script src="../../lib/js/head.min.js"></script>
+<script src="../../js/reveal.js"></script>
+
+<script>
+
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: false,
+    progress: true,
+    history: true,
+
+    // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: '../../lib/js/classList.js', condition: function () {
+        return !document.body.classList;
+      } },
+      { src: '../../plugin/highlight/highlight.js', async: true, callback: function () {
+        hljs.initHighlightingOnLoad();
+      } },
+      { src: '../../plugin/zoom-js/zoom.js', async: true, condition: function () {
+        return !!document.body.classList;
+      } },
+      { src: '../../plugin/notes/notes.js', async: true, condition: function () {
+        return !!document.body.classList;
+      } },
+      { src: '../../plugin/firebase/firebase.js' }
+    ]
+  });
+
+</script>
+
+</body>
+</html>
