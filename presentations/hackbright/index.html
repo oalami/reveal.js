@@ -132,7 +132,7 @@
     <h3>Jenny Tong</h3>
     Developer Advocate at Firebase
     <br/>
-    <a href="https://plus.google.com/+JennyMurphy">+JennyMurphy</a><br/><a href="https://twitter.com/baconatedgeek">@BaconatedGeek</a>
+    <a href="https://plus.google.com/+mimming">+mimming</a><br/><a href="https://twitter.com/MimmingCodes">@MimmingCodes</a>
   </div>
   <br/>
 
@@ -327,16 +327,22 @@
   <br/>
 
   <div style="float: left; font-size: 35px;">
-    <ul>
-      <li>120,000 registered developers</li>
+    <ul style="width:600px;">
+      <li><span id="current-devs">155,000</span> registered developers</li>
       <li>1M concurrent users on Firebase sites</li>
       <li>Founded in Spring of 2011 in SF</li>
+      <li>Joined Google Cloud Platform in October 2014</li>
     </ul>
     <div style="float: right;"><img src="devs.png" style="width: 170px; margin-left: 100px; margin-right: 20px;"/>
         <img src="devices2.png" style="width: 300px;"/></div>
   </div>
   <br/>
-
+  <script>
+    var devsRef = new Firebase("https://firebase-website.firebaseio.com/stats/signups");
+    devsRef.on("value", function (snap) {
+      $("#current-devs").text(snap.val().toLocaleString());
+    });
+  </script>
 </section>
 
 <section>
